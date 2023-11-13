@@ -31,6 +31,7 @@ class FriendRequestResponseController extends Controller
         try {
             $friendRequest->acceptance_status = FriendRequestAcceptanceHelper::REJECTED;
             $friendRequest->save();
+            
         } catch (Exception $e) {
             return $e->getMessage();
         }
@@ -42,6 +43,7 @@ class FriendRequestResponseController extends Controller
             $friend = User::find($friendRequest->receiver_id)->first();
 
             return $user->friends()->attach($friend);
+
         } catch (Exception $e) {
             return $e->getMessage();
         }
